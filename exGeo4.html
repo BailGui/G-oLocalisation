@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recherche de la position</title>
+  </head>
+  <body>
+    <h1>Recherche de la position</h1>
+    <button onclick="recherchePosition();">Recherche</button>
+    <p id="message"></p>
+    <p>
+      Latitude <span id="lat"></span> Longitude <span id="long"></span> Altitude
+      <span id="alti"></span>
+    </p>
+    <script>
+      function recherchePosition() {
+        if (detecterGeoLoc()) {
+          // recherche de la position ou erreur
+          document.getElementById("message").innerHTML = "Je recherche";
+          navigator.geolocation.getCurrentPosition(
+            positionTrouvee,
+            erreurPosition,
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+          );
+        } else {
+          // Pas de géolocalisation
+          document.getElementById("message").innerHTML =
+            "La géolocalisation n'est pas supportée sur ce navigateur";
+        }
+      }
+
+      function detecterGeoLoc() {
+        if (navigator.geolocation) {
+          return true; // géolocalisation supportée
+        } else {
+          return false; // pas de géolocalisation
+        }
+      }
+
+      function positionTrouvee(position) {
+        document.getElementById("lat").innerHTML =
+          position.coords.latitude + " °";
+        document.getElementById("long").innerHTML =
+          position.coords.longitude + " °";
+        document.getElementById("alti").innerHTML =
+          position.coords.altitude + " m";
+      }
+
+      function erreurPosition(erreur) {
+        switch (erreur.code) {
+          case erreur.PERMISSION_DENIED:
+            document.getElementById("message").innerHTML =
+              "PERMISSION_DENIED : l'utilisateur n'a pas autorisé l'accès à sa position.";
+            break;
+          case erreur.POSITION_UNAVAILABLE:
+            document.getElementById("message").innerHTML =
+              "POSITION_UNAVAILABLE : la position n'a pas pu être déterminée.";
+            break;
+          case erreur.TIMEOUT:
+            document.getElementById("message").innerHTML =
+              "TIMEOUT : le service n'a pas répondu à temps.";
+            break;
+          case erreur.UNKNOWN_ERROR:
+            document.getElementById("message").innerHTML =
+              "UNKNOWN_ERROR : une erreur inconnue s'est produite";
+        }
+      }
+    </script>
+  </body>
+</html>
