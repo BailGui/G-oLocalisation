@@ -9,3 +9,8 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 /* Ajout d'un marqueur de base */
 var marker = L.marker([51.5,0]).addTo(carte);
+
+/* Ajout d'un popup */
+const monPopup = "<h3>Je suis ici!</h3><p class='rouge'>Au centre de <a target='_blank' href='https://fr.wikipedia.org/wiki/Londres'>Londres</a></p>";
+
+marker.bindPopup(monPopup);
