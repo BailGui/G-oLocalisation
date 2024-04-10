@@ -15,3 +15,10 @@ const liste = {
     "British Museum":{"lat":51.519294,"lng":-0.128018}
 };
 
+/* Création d'un ClusterGroup */
+const markers= L.markerClusterGroup();
+
+/*Boucle pour créer les marqueurs de la liste */
+for (let item in liste){
+    let unMarqueur = L.marker([liste[item].lat, liste[item].lng])
+}
