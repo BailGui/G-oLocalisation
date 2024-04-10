@@ -41,4 +41,4 @@ carte.addLayer(markers);
 const groupe = new L.featureGroup(markerTable);
 
 /* adapter l'affichage de ma carte en fonction de la position des marqueurs */
-carte.fitBounds(groupe.getBounds());
+carte.fitBounds(groupe.getBounds(),{padding:[10,10]});
