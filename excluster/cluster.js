@@ -27,3 +27,6 @@ for (let item in liste){
     /* ajouter ce marqueur au groupe */
     markers.addLayer(unMarqueur);
 }
+
+/* ajouter le groupe a la carte */
+carte.addLayer(markers);
