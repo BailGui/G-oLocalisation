@@ -19,6 +19,9 @@ var monIcon = L.icon({
     iconUrl: 'red_map_marker.svg',
     iconSize: [64, 64],
     iconAnchor: [32, 64],
+    popupAnchor: [0,-64]
 });
 
 const marker2 =  L.marker([51.5,-0.1],{icon:monIcon}).addTo(carte);
+
+marker2.bindPopup("Je suis l'icône rouge");
