@@ -14,3 +14,11 @@ var marker = L.marker([51.5,0]).addTo(carte);
 const monPopup = "<h3>Je suis ici!</h3><p class='rouge'>Au centre de <a target='_blank' href='https://fr.wikipedia.org/wiki/Londres'>Londres</a></p>";
 
 marker.bindPopup(monPopup);
+
+var monIcon = L.icon({
+    iconUrl: 'red_map_marker.svg',
+    iconSize: [64, 64],
+    iconAnchor: [32, 64],
+});
+
+const marker2 =  L.marker([51.5,-0.1],{icon:monIcon}).addTo(carte);
