@@ -20,5 +20,5 @@ const markers= L.markerClusterGroup();
 
 /*Boucle pour créer les marqueurs de la liste */
 for (let item in liste){
-    let unMarqueur = L.marker([liste[item].lat, liste[item].lng])
+    let unMarqueur = L.marker([liste[item].lat, liste[item].lng]).addTo(carte);
 }
