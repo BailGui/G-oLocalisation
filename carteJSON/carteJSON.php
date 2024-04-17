@@ -10,6 +10,9 @@ try {
     die($e->getMessage());
 }
 
+// affiche le format de la requête avec le format JSON
+echo json_encode(getLocations($db));
+
 $db = null;
 
 function getLocations(PDO $db): array
