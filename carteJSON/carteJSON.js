@@ -55,10 +55,28 @@ function afficheListe(liste){
         let LI = document.createElement("li");
         // remplir le <li>
         LI.innerHTML = `${item.name} | ${item.adresse}`;
+        //ajouter un addeventlisterner sur le clic
+        LI.addEventListener('click', itemClick);
+        // ajouter un attribut à cet item LI pour l'identifier
+        LI.setAttribute("id",`${item.id}`);
+        // ajouter un attributs à cet item LI pour stocker les coordonnées
+        LI.setAttribute("latitude", `${item.lat}`);
+        LI.setAttribute("longitude", `${item.long}`);
         // attacher ce <li> au <ul>
         UL.appendChild(LI);
     });
 
     // attacher la liste <ul> au DIV
     divliste.appendChild(UL);
+}
+
+function itemClick(){
+    let id = this.getAttribute("id");
+    let latitude = this.getAttribute("latitude");
+    let longitude = this.getAttribute("longitude");
+
+    carte.flyTo([latitude, longitude],17);
+
+
+
 }
