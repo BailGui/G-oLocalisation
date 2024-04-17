@@ -1,5 +1,5 @@
 /* Définition du centre et du zoom de la carte (valeur initiale)  */
-const carte = L.map('map').setView([51.505, -0.09], 16);
+const carte = L.map('map').setView([50.8466,  4.3528], 16);
 
 /* Ajout d'un fond de carte (arrière-plan) */
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -12,6 +12,7 @@ fetch("carteJSON.php")
     .then(function(response){
         response.json().then(function(data){
             console.log(data);
+            afficheMarqueurs(data);
         });
     })
     .catch(function(error){
@@ -27,7 +28,8 @@ for (let item in liste){
     /* créer un marqueur pour chaque élément de la liste */
     let unMarqueur = L.marker([liste[item].lat, liste[item].long]).addTo(carte);
     /* mettre le nom de l'item dans un popup */
-    unMarqueur.bindPopup(liste[item].name);
+    /* mettre le nom de l'item dans un popup */
+    unMarqueur.bindPopup(`<h3>${liste[item].name}</h3><p>${liste[item].adresse}</p><img class='photo' src='${liste[item].img_url}' >`);
 
     /* ajouter ce marqueur au tableau */
     markerTable.push(unMarqueur);
@@ -38,3 +40,21 @@ const groupe = new L.featureGroup(markerTable);
 
 /* adapter l'affichage de ma carte en fonction de la position des marqueurs */
 carte.fitBounds(groupe.getBounds(),{padding:[10,10]});
+
+function afficheListe(liste){
+    const liste = document.getElementById('liste');
+
+    const UL = document.createElement('ul');
+
+    liste.forEach(function(item){
+        // créer l'élément de type <li>
+        let LI = document.createElement("li");
+        // remplir le <li>
+        LI.innerHTML = `${item.name} | ${item.adresse}`;
+        // attacher ce <li> au <ul>
+        UL.appendChild(LI);
+    });
+
+    // attacher la liste <ul> au DIV
+    liste.appendChild(UL);
+}
