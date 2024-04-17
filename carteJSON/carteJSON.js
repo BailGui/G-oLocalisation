@@ -75,6 +75,9 @@ function itemClick(){
     let latitude = this.getAttribute("latitude");
     let longitude = this.getAttribute("longitude");
 
+    let marqueur = markerTable[id-1];
+    marqueur.togglePopup();
+
     carte.flyTo([latitude, longitude],17);
 
 
