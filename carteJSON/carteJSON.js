@@ -13,6 +13,7 @@ fetch("carteJSON.php")
         response.json().then(function(data){
             console.log(data);
             afficheMarqueurs(data);
+            afficheListe(data);
         });
     })
     .catch(function(error){
@@ -33,20 +34,23 @@ for (let item in liste){
 
     /* ajouter ce marqueur au tableau */
     markerTable.push(unMarqueur);
-}} 
+}
 
 /* placer le tableau de marqueuts dans le featureGroup */
 const groupe = new L.featureGroup(markerTable);
 
+
 /* adapter l'affichage de ma carte en fonction de la position des marqueurs */
 carte.fitBounds(groupe.getBounds(),{padding:[10,10]});
+}
+
 
 function afficheListe(liste){
-    const liste = document.getElementById('liste');
+    const divliste = document.getElementById("liste");
 
-    const UL = document.createElement('ul');
+    const UL = document.createElement("ul");
 
-    liste.forEach(function(item){
+    liste.forEach(function(item,index){
         // créer l'élément de type <li>
         let LI = document.createElement("li");
         // remplir le <li>
@@ -56,5 +60,5 @@ function afficheListe(liste){
     });
 
     // attacher la liste <ul> au DIV
-    liste.appendChild(UL);
+    divliste.appendChild(UL);
 }
