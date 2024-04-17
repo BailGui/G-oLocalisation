@@ -21,16 +21,17 @@ fetch("carteJSON.php")
 /* Création d'un tableau de marqueurs pour un affichage optimal avec FeatureGroup */
 const markerTable = [];
 
+function afficheMarqueurs(liste){
 /* Boucle pour créer les marqueurs de la liste */
 for (let item in liste){
     /* créer un marqueur pour chaque élément de la liste */
-    let unMarqueur = L.marker([liste[item].lat, liste[item].lng]).addTo(carte);
+    let unMarqueur = L.marker([liste[item].lat, liste[item].long]).addTo(carte);
     /* mettre le nom de l'item dans un popup */
-    unMarqueur.bindPopup(item);
+    unMarqueur.bindPopup(liste[item].name);
 
     /* ajouter ce marqueur au tableau */
     markerTable.push(unMarqueur);
-}
+}} 
 
 /* placer le tableau de marqueuts dans le featureGroup */
 const groupe = new L.featureGroup(markerTable);
